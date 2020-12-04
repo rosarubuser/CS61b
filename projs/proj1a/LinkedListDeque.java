@@ -52,8 +52,8 @@ public class LinkedListDeque<T> {
     /** add an element at the end of a list */
     public void addLast(T item) {
         EleList<T> newL = new EleList<>(item, sentinel.prev, sentinel);
-        sentinel.prev = newL;
         sentinel.prev.next = newL;
+        sentinel.prev = newL;
         size += 1;
     }
 
@@ -128,7 +128,7 @@ public class LinkedListDeque<T> {
         if (index == 0) return pList.item;
         else {
             index -= 1;
-            return getHelper(index, pList.next)
+            return (T) getHelper(index, pList.next);
         }
     }
 
