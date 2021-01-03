@@ -1,4 +1,4 @@
-/*import org.junit.Test;
+import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class TestPalindrome {
@@ -8,11 +8,33 @@ public class TestPalindrome {
 
     @Test
     public void testWordToDeque() {
-        Deque d = palindrome.wordToDeque("persiflage");
+        Deque d = palindrome.wordToDeque("abc");
         String actual = "";
-        for (int i = 0; i < "persiflage".length(); i++) {
+        for (int i = 0; i < "abc".length(); i++) {
             actual += d.removeFirst();
         }
-        assertEquals("persiflage", actual);
+        assertEquals("abc", actual);
     }
-}     Uncomment this class once you've created your Palindrome class. */
+
+    @Test
+    public void testIsPalindrome() {
+        assertTrue(palindrome.isPalindrome(""));
+        assertTrue(palindrome.isPalindrome("a"));
+        assertTrue(palindrome.isPalindrome("caac"));
+        assertTrue(palindrome.isPalindrome("cadac"));
+        assertFalse("The word is not palindrome", palindrome.isPalindrome("caAc"));
+        assertFalse(palindrome.isPalindrome("cat"));
+    }
+
+    @Test
+    public void testIsPalindromeWithOBO() {
+        CharacterComparator obo = new OffByOne();
+        assertTrue(palindrome.isPalindrome("flake", obo));
+        assertTrue(palindrome.isPalindrome("goph", obo));
+        assertFalse(palindrome.isPalindrome("faaae", obo));
+        assertTrue(palindrome.isPalindrome("", obo));
+        assertTrue(palindrome.isPalindrome("a", obo));
+        assertFalse(palindrome.isPalindrome("%a;", obo));
+        assertTrue(palindrome.isPalindrome("%cd&", obo));
+    }
+}
